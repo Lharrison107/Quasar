@@ -6,7 +6,9 @@
       @keyup.enter="alertMessage"
     />
     <button @click="clearMessage">Clear</button>
-    <h5>{{ message }}</h5>
+    <h5 class="border-grey" v-show="message.length">
+      {{ message }}
+    </h5>
   </q-page>
 </template>
 
@@ -29,4 +31,7 @@ export default {
 </script>
 
 <style>
+  .border-grey{
+    border: 1px solid grey;
+  }
 </style>
