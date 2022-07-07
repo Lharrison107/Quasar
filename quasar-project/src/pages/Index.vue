@@ -13,11 +13,16 @@
       @keyup.esc="clearMessage" 
       @keyup.enter="alertMessage"
       v-autofocus
+      :style="errorStyle"
     />
 
     <button @click="clearMessage">
       Clear
     </button>
+
+    <div>
+      {{ message.length }}
+    </div>
 
     <h5 
       class="border-grey" 
@@ -54,6 +59,15 @@ export default {
   computed: {
     messageToUppercase() {
       return this.message.toUpperCase()
+    },
+    errorStyle() {
+      if(this.message.length > 22) {
+        return {
+              'border' : '3px solid red',
+              'color' : 'red',
+              'background' : 'pink'
+        }
+      }
     }
   },
   methods: {
@@ -80,7 +94,15 @@ export default {
 </script>
 
 <style>
+  input, button {
+    font-size: 30;
+  }
   .border-grey{
     border: 1px solid grey;
+  }
+  .error{
+    border: 3px solid red;
+    color: red;
+    background: pink;
   }
 </style>
