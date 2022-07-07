@@ -6,6 +6,7 @@
         :task="task"
         :index="index"
       >
+        {{ task.name }}
       </task>
     </ul>
   </q-page>
