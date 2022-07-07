@@ -6,9 +6,15 @@
       @keyup.enter="alertMessage"
     />
     <button @click="clearMessage">Clear</button>
-    <h5 class="border-grey" v-show="message.length">
+    <h5 
+      class="border-grey" 
+      v-if="message.length"
+    >
       {{ message }}
     </h5>
+    <h6 v-else>
+      No Message Entered
+    </h6>
   </q-page>
 </template>
 
