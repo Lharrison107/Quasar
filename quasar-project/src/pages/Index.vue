@@ -1,7 +1,12 @@
 <template>
   <q-page padding>
     <ul>
-      <task v-for="(task, index) in tasks"></task>
+      <task 
+        v-for="(task, index) in tasks"
+        :task="task"
+        :index="index"
+      >
+      </task>
     </ul>
   </q-page>
 </template>

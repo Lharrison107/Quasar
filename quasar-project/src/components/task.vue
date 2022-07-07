@@ -8,6 +8,9 @@
 </template>
 
 <script>
+    export default {
+        props: [ 'task', 'index' ]
+    }
 </script>
 
 <style>
