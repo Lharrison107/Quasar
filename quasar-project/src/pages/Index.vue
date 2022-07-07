@@ -3,6 +3,7 @@
     <ul>
       <task 
         v-for="(task, index) in tasks"
+        :key="task.id"
         :task="task"
         :index="index"
       >
@@ -19,16 +20,19 @@
       return {
         tasks : [
           {
+            id: 1,
             name: 'Got to shop',
             dueDate: '2022/27/09',
             dueTime: '14:00'
           },
           {
+            id: 2,
             name: 'Get bananas',
             dueDate: '2022/27/10',
             dueTime: '14:00'
           },
           {
+            id: 3,
             name: 'Get apples',
             dueDate: '2022/27/19',
             dueTime: '14:00'
