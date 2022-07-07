@@ -13,7 +13,8 @@
       @keyup.esc="clearMessage" 
       @keyup.enter="alertMessage"
       v-autofocus
-      :style="errorStyle"
+      :class="{ 'error' : message.length > 22}"
+      ref="messageInput"
     />
 
     <button @click="clearMessage">
@@ -90,30 +91,31 @@ export default {
       }
     }
   },
-  beforeCreate() {
-    console.log('before create')
-  },
-  created() {
-    console.log('created')
-  },
-  beforeMount() {
-    console.log('before mount')
-  },
+  // beforeCreate() {
+  //   console.log('before create')
+  // },
+  // created() {
+  //   console.log('created')
+  // },
+  // beforeMount() {
+  //   console.log('before mount')
+  // },
   mounted() {
-    console.log('mounted')
+    console.log(this.$refs)
+    this.$refs.messageInput.className = 'bg-green'
   },
-  beforeUpdate() {
-    console.log('before update')
-  },
-  updated() {
-    console.log('updated')
-  },
-  beforeDestroy() {
-    console.log('before destroy')
-  },
-  destroyed() {
-    console.log('destroyed')
-  }
+  // beforeUpdate() {
+  //   console.log('before update')
+  // },
+  // updated() {
+  //   console.log('updated')
+  // },
+  // beforeDestroy() {
+  //   console.log('before destroy')
+  // },
+  // destroyed() {
+  //   console.log('destroyed')
+  // }
 }
 </script>
 
