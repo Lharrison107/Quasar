@@ -35,6 +35,9 @@
     <p>
       Uppercase Message: {{ messageToUppercase }} 
     </p>
+    <p>
+      Lowercase Message: {{ message | messageToLowercase }}
+    </p>
 
   </q-page>
 </template>
@@ -58,6 +61,11 @@ export default {
     },
     alertMessage() {
       alert(this.message)
+    }
+  },
+  filters: {
+    messageToLowercase(value) {
+      return value.toLowerCase()
     }
   }
 }
