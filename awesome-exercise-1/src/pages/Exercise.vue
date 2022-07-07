@@ -78,7 +78,8 @@
 		data() {
 			return {
 			name: 'Danny',
-			age: 36
+			age: 36,
+			names : ['Lyric', 'Harmony', 'Johnny', 'Jonathon', 'Melody', 'Danny']
 			}
   		},
 		computed: {
@@ -89,8 +90,7 @@
 		},
 		methods: {
 			generateRadomPerson() {
-				const names = ['Lyric', 'Harmony', 'Johnny', 'Jonathon', 'Melody', 'Danny']
-				this.name = names[Math.floor(Math. random() * 5)]
+				this.name = this.names[Math.floor(Math. random() * this.names.length)]
 				this.age = Math.floor(Math. random() * (100-1+1)+1)
 			}
 		},
