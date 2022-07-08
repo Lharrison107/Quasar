@@ -9,8 +9,8 @@ const routes = [
         component: () => import('pages/PageTodo.vue') 
       },
       { 
-        path: '/settings', 
-        component: () => import('pages/pageSettings.vue') 
+        path: 'settings', 
+        component: () => import('pages/PageSettings.vue') 
       }
    
     ]

@@ -19,6 +19,25 @@
       </q-toolbar>
     </q-header>
 
+    <q-footer elevated>
+      <q-toolbar>
+        <q-tabs>
+          <q-route-tab 
+            icon="list" 
+            label="Todo"
+            to="/"
+            exact 
+          />
+          <q-route-tab 
+            icon="settings" 
+            label="Settings"
+            to="/settings" 
+            exact
+          />
+        </q-tabs>
+      </q-toolbar>
+    </q-footer>
+
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
