@@ -8,24 +8,7 @@
             <q-card-section class="q-pt-none">
                 <div class="row q-mb-sm">
                     <!-- task name -->
-                    <q-input 
-                        outlined 
-                        v-model="taskToSubmit.name"
-                        :rules="[val => !!val || 'Field is required']"
-                        autofocus 
-                        ref="name"
-                        label="Task Name" 
-                        class="col"
-                    >
-                        <template v-slot:append>
-                           <q-icon
-                           v-if="taskToSubmit.name"
-                              name="close"
-                              @click="taskToSubmit.name = ''"
-                              class="cursor-pointer" 
-                            />
-                        </template>
-                    </q-input>
+                    <modal-task-name :name.sync="taskToSubmit.name"/>
                 </div>
                 <div class="row q-mb-sm">
                     <!-- task date -->
@@ -104,6 +87,8 @@
                     color="primary"
                 />
             </q-card-actions>
+
+            <pre>{{ taskToSubmit }}</pre>
         </q-form>
     </q-card>
 </template>
@@ -139,7 +124,8 @@ import { mapActions } from 'vuex';
             }
         },
         components: {
-            'modal-header' : require('components/Tasks/Modals/Shared/ModalHeader.vue').default
+            'modal-header' : require('components/Tasks/Modals/Shared/ModalHeader.vue').default,
+            'modal-task-name' : require('components/Tasks/Modals/Shared/ModalTaskName.vue').default,
         }
     }
 </script>
