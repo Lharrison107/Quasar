@@ -1,7 +1,7 @@
 <template>
     <q-card>
         <modal-header>
-            ~Add Task~
+            ~Edit Task~
         </modal-header>
         
         <q-form @submit.prevent="submitForm">
