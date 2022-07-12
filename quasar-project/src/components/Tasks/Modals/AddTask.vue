@@ -12,41 +12,10 @@
                 </div>
                 <div class="row q-mb-sm">
                     <!-- task date -->
-                    <q-input 
-                        outline 
-                        label="Due Date"
-                        class="col"
-                        v-model="taskToSubmit.dueDate" 
-                    >
-                        <template v-slot:append>
-                            <q-icon
-                                v-if="taskToSubmit.dueDate"
-                                name="close"
-                                @click="clearDueDate"
-                                class="cursor-pointer" 
-                            />
-                            <q-icon 
-                                name="event" 
-                                class="cursor-pointer"
-                            >
-                                <q-popup-proxy 
-                                    cover transition-show="scale" 
-                                    transition-hide="scale"
-                                >
-                                    <q-date v-model="taskToSubmit.dueDate">
-                                    <div class="row items-center justify-end">
-                                        <q-btn 
-                                            v-close-popup 
-                                            label="Close" 
-                                            color="primary" 
-                                            flat 
-                                        />
-                                    </div>
-                                    </q-date>
-                                </q-popup-proxy>
-                            </q-icon>
-                        </template>
-                    </q-input>
+                    <modal-due-date 
+                        :dueDate.sync="taskToSubmit.dueDate"
+                        @clear="clearDueDate"
+                    />
                 </div>
                 <div
                   v-if="taskToSubmit.dueDate"
@@ -126,6 +95,7 @@ import { mapActions } from 'vuex';
         components: {
             'modal-header' : require('components/Tasks/Modals/Shared/ModalHeader.vue').default,
             'modal-task-name' : require('components/Tasks/Modals/Shared/ModalTaskName.vue').default,
+            'modal-due-date' : require('components/Tasks/Modals/Shared/ModalDueDate.vue').default,
         }
     }
 </script>
