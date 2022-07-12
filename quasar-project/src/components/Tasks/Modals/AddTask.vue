@@ -8,7 +8,10 @@
             <q-card-section class="q-pt-none">
                 <div class="row q-mb-sm">
                     <!-- task name -->
-                    <modal-task-name :name.sync="taskToSubmit.name"/>
+                    <modal-task-name 
+                        :name.sync="taskToSubmit.name"
+                        ref="modalTaskName"
+                    />
                 </div>
                 <div class="row q-mb-sm">
                     <!-- task date -->
@@ -28,13 +31,7 @@
                 </div>
             </q-card-section>
 
-            <q-card-actions align="right">
-                <q-btn  
-                    type="submit"
-                    label="save" 
-                    color="primary"
-                />
-            </q-card-actions>
+           <modal-buttons />
 
             <pre>{{ taskToSubmit }}</pre>
         </q-form>
@@ -57,8 +54,8 @@ import { mapActions } from 'vuex';
         methods: {
             ...mapActions('tasks', ['addTask']),
             submitForm() {
-                this.$refs.name.validate();
-                if(!this.$refs.name.hasError) {
+                this.$refs.modalTaskName.$refs.name.validate();
+                if(!this.$refs.modalTaskName.$refs.name.hasError) {
                     this.submitTask()
                 }
             },
@@ -76,6 +73,7 @@ import { mapActions } from 'vuex';
             'modal-task-name' : require('components/Tasks/Modals/Shared/ModalTaskName.vue').default,
             'modal-due-date' : require('components/Tasks/Modals/Shared/ModalDueDate.vue').default,
             'modal-due-time' : require('components/Tasks/Modals/Shared/ModalDueTime.vue').default,
+            'modal-buttons' : require('components/Tasks/Modals/Shared/ModalButtons.vue').default,
         }
     }
 </script>
