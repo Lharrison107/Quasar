@@ -13,6 +13,20 @@
         >
         </task>
     </q-list>
+    <div class="absolute-bottom text-center q-mb-lg">
+      <q-btn
+      @click="showAddTask = true"
+        round
+        color="primary"
+        size="24px"
+        icon="add"
+      />
+    </div>
+
+    <q-dialog v-model="showAddTask">
+      <addTask />
+    </q-dialog>
+
   </q-page>
 </template>
 
@@ -20,11 +34,17 @@
 import { mapGetters } from 'vuex'
 
   export default {
+    data() {
+      return {
+        showAddTask: false
+      }
+    },
     computed: {
      ...mapGetters('tasks', ['tasks'])
     },
     components: {
-      'task' : require('components/Tasks/Task.vue').default
+      'task' : require('components/Tasks/Task.vue').default,
+      'addTask' : require('components/Tasks/Modals/AddTask.vue').default
 
     }
   }
