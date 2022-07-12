@@ -71,7 +71,11 @@
         </q-item-section>
 
         <q-dialog v-model="showEditTask">
-            <EditTask @close="showEditTask = false"/>
+            <EditTask 
+                @close="showEditTask = false"
+                :task="task"
+                :id="id"
+            />
         </q-dialog>
     </q-item>
 </template>
