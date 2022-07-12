@@ -1,18 +1,8 @@
 <template>
     <q-card>
-        <q-card-section class="row">
-            <div class="text-h6">
-                Add Task
-            </div>
-            <q-space />
-            <q-btn
-                v-close-popup
-                flat 
-                round  
-                dense
-                icon="close" 
-            />
-        </q-card-section>
+        <modal-header>
+            ~Add Task~
+        </modal-header>
         
         <q-form @submit.prevent="submitForm">
             <q-card-section class="q-pt-none">
@@ -147,6 +137,9 @@ import { mapActions } from 'vuex';
                 this.taskToSubmit.dueDate = '';
                 this.taskToSubmit.dueTime = '';
             }
+        },
+        components: {
+            'modal-header' : require('components/Tasks/Modals/Shared/ModalHeader.vue').default
         }
     }
 </script>
