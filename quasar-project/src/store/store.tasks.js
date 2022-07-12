@@ -1,52 +1,30 @@
 import Vue from 'vue';
+import { uid } from 'quasar';
 
 const state = {
     tasks: {
-       'ID1': {
-            id: 1,
-            name: 'Go to store',
-            completed: false,
-            dueDate: '7/10/25',
-            dueTime: '14:00'
-       },
-       'ID2': {
-            id: 2,
-            name: 'Get bananas',
-            completed: false,
-            dueDate: '7/10/23',
-            dueTime: '14:00'
-        },
-        'ID3': {
-            id: 3,
-            name: 'Get apples',
-            completed: false,
-            dueDate: '7/10/29',
-            dueTime: '14:00'
-        }, 
+    //    'ID1': {
+    //         id: 1,
+    //         name: 'Go to store',
+    //         completed: false,
+    //         dueDate: '7/10/25',
+    //         dueTime: '14:00'
+    //    },
+    //    'ID2': {
+    //         id: 2,
+    //         name: 'Get bananas',
+    //         completed: false,
+    //         dueDate: '7/10/23',
+    //         dueTime: '14:00'
+    //     },
+    //     'ID3': {
+    //         id: 3,
+    //         name: 'Get apples',
+    //         completed: false,
+    //         dueDate: '7/10/29',
+    //         dueTime: '14:00'
+    //     }, 
     }
-    // tasks: [
-    //     {
-    //        id: 1,
-    //        name: 'Go to store',
-    //        completed: false,
-    //        dueDate: '7/10/25',
-    //        dueTime: '14:00'
-    //      },
-    //      {
-    //        id: 2,
-    //        name: 'Get bananas',
-    //        completed: false,
-    //        dueDate: '7/10/23',
-    //        dueTime: '14:00'
-    //      },
-    //      {
-    //        id: 3,
-    //        name: 'Get apples',
-    //        completed: false,
-    //        dueDate: '7/10/29',
-    //        dueTime: '14:00'
-    //      }
-    // ]
 }
 
 const mutations = {
@@ -55,6 +33,9 @@ const mutations = {
     },
     deleteTask(state, id) {
         Vue.delete(state.tasks, id)
+    },
+    addTask(state, payload) {
+        Vue.set(state.tasks, payload.id, payload.task)
     }
 }
 
@@ -65,6 +46,14 @@ const actions = {
     deleteTask({ commit }, id) {
         commit('deleteTask', id)
     },
+    addTask({ commit }, task) {
+        let taskId = uid()
+        let payload = {
+            id: taskId,
+            task: task
+        }
+        commit('addTask', payload)
+    }
 }
 
 const getters = {

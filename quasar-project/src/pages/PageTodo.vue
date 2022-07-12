@@ -24,7 +24,7 @@
     </div>
 
     <q-dialog v-model="showAddTask">
-      <addTask />
+      <addTask @close="showAddTask = false"/>
     </q-dialog>
 
   </q-page>
@@ -36,7 +36,7 @@ import { mapGetters } from 'vuex'
   export default {
     data() {
       return {
-        showAddTask: true
+        showAddTask: false
       }
     },
     computed: {
