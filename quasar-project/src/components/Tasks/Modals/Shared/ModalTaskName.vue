@@ -11,7 +11,7 @@
     >
         <template v-slot:append>
             <q-icon
-            v-if="name"
+                v-if="name"
                 name="close"
                 @click="$emit('update:name', '')"
                 class="cursor-pointer" 

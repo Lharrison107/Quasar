@@ -22,30 +22,9 @@
                   class="row q-mb-sm"
                 >
                     <!-- task time -->
-                    <q-input 
-                        outlined 
-                        class="col"
-                        v-model="taskToSubmit.dueTime" 
-                        label="Due Time"
-                    >
-                        <template v-slot:append>
-                             <q-icon
-                                v-if="taskToSubmit.dueTime"
-                                name="close"
-                                @click="taskToSubmit.dueTime = ''"
-                                class="cursor-pointer" 
-                            />
-                            <q-icon name="access_time" class="cursor-pointer">
-                                <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-                                <q-time v-model="taskToSubmit.dueTime">
-                                    <div class="row items-center justify-end">
-                                    <q-btn v-close-popup label="Close" color="primary" flat />
-                                    </div>
-                                </q-time>
-                                </q-popup-proxy>
-                            </q-icon>
-                        </template>
-                    </q-input>
+                    <modal-due-time 
+                        :dueTime.sync="taskToSubmit.dueTime"
+                    />
                 </div>
             </q-card-section>
 
@@ -96,6 +75,7 @@ import { mapActions } from 'vuex';
             'modal-header' : require('components/Tasks/Modals/Shared/ModalHeader.vue').default,
             'modal-task-name' : require('components/Tasks/Modals/Shared/ModalTaskName.vue').default,
             'modal-due-date' : require('components/Tasks/Modals/Shared/ModalDueDate.vue').default,
+            'modal-due-time' : require('components/Tasks/Modals/Shared/ModalDueTime.vue').default,
         }
     }
 </script>
