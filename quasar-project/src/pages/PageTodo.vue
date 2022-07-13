@@ -1,8 +1,11 @@
 <template>
   <q-page class="q-pa-md">
+    <noTasks v-if="!Object.keys(tasksTodo).length">
+    </noTasks>
+
     <tasksTodo 
       :tasksTodo="tasksTodo"
-      v-if="Object.keys(tasksTodo).length"
+      v-else
     />
 
     <tasksCompleted 
@@ -43,7 +46,8 @@ import { mapGetters } from 'vuex'
       'task' : require('components/Tasks/Task.vue').default,
       'addTask' : require('components/Tasks/Modals/AddTask.vue').default,
       'tasksTodo' : require('components/Tasks/tasksTodo.vue').default,
-      'tasksCompleted' : require('components/Tasks/tasksCompleted.vue').default
+      'tasksCompleted' : require('components/Tasks/tasksCompleted.vue').default,
+      'noTasks' : require('components/Tasks/NoTasks.vue').default,
     }
   }
 </script>
