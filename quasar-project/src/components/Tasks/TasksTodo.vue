@@ -3,7 +3,6 @@
     <listHeader bgColor="bg-pink">~Todo~</listHeader>
     
     <q-list
-      v-if="Object.keys(tasksTodo).length"
       separator
       bordered
     >

@@ -2,7 +2,6 @@
     <div class="q-mt-lg">
         <listHeader bgColor="bg-teal-13">~Completed~</listHeader>
         <q-list
-            v-if="Object.keys(tasksCompleted).length"
             separator
             bordered
         >

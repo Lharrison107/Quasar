@@ -2,10 +2,12 @@
   <q-page class="q-pa-md">
     <tasksTodo 
       :tasksTodo="tasksTodo"
+      v-if="Object.keys(tasksTodo).length"
     />
 
     <tasksCompleted 
       :tasksCompleted="tasksCompleted"
+      v-if="Object.keys(tasksCompleted).length"
     />
 
     <div class="absolute-bottom text-center q-mb-lg">
