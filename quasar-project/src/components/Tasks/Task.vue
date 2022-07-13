@@ -1,7 +1,7 @@
 <template>
     <q-item
         @click="updateTask({ id: id, updates: { completed: !task.completed }})"
-        :class="!task.completed ? 'bg-orange-1' : 'bg-green-1'"
+        :class="!task.completed ? 'bg-pink-1' : 'bg-teal-1'"
         clickable
         v-ripple
     >

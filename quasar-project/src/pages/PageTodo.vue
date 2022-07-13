@@ -3,7 +3,7 @@
     <tasksTodo 
       :tasksTodo="tasksTodo"
     />
-    <hr />
+
     <tasksCompleted 
       :tasksCompleted="tasksCompleted"
     />
