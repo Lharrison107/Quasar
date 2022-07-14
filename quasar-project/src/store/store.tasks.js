@@ -64,25 +64,42 @@ const actions = {
 }
 
 const getters = {
-    tasksTodo: (state) => {
+    tasksTodo: (state, getters) => {
+        let tasksFiltered = getters.tasksFiltered
         let tasks = {}
-        Object.keys(state.tasks).forEach(function(key) {
-            let task = state.tasks[key]
+        Object.keys(tasksFiltered).forEach(function(key) {
+            let task = tasksFiltered[key]
             if(!task.completed) {
                 tasks[key] = task
             }
         })
         return tasks
     },
-    tasksCompleted: (state) => {
+    tasksCompleted: (state, getters) => {
+        let tasksFiltered = getters.tasksFiltered
         let tasks = {}
-        Object.keys(state.tasks).forEach(function(key) {
-            let task = state.tasks[key]
+        Object.keys(tasksFiltered).forEach(function(key) {
+            let task = tasksFiltered[key]
             if(task.completed) {
                 tasks[key] = task
             }
         })
         return tasks
+    },
+    tasksFiltered: (state) => {
+        let tasksFiltered = {}
+        if(state.search) {
+            Object.keys(state.tasks).forEach(function(key) {
+                let task = state.tasks[key]
+                let taskNameToLowerCase = task.name.toLowerCase()
+                let searchToLowerCase = state.search.toLowerCase()
+                if(taskNameToLowerCase.includes(searchToLowerCase)) {
+                    tasksFiltered[key] = task
+                }
+            })
+            return tasksFiltered
+        }
+        return state.tasks
     }
 }
 

@@ -5,7 +5,6 @@
           v-model="searchField"
           label="Search"
           outlined
-          :dense="dense"
         >
 
         <template v-slot:append>
