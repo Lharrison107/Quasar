@@ -1,7 +1,6 @@
 <template>
     <div>
         <q-input
-          class="col"
           v-model="searchField"
           label="Search"
           outlined
