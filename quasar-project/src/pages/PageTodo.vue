@@ -1,5 +1,9 @@
 <template>
   <q-page class="q-pa-md">
+    <div class="row q-mb-lg">
+      <search />
+    </div>
+
     <noTasks 
       v-if="!Object.keys(tasksTodo).length"
     >
@@ -55,6 +59,7 @@ import { mapGetters } from 'vuex'
       'tasksTodo' : require('components/Tasks/tasksTodo.vue').default,
       'tasksCompleted' : require('components/Tasks/tasksCompleted.vue').default,
       'noTasks' : require('components/Tasks/NoTasks.vue').default,
+      'search' : require('components/Tasks/Tools/Search.vue').default,
     }
   }
 </script>
