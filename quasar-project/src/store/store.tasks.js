@@ -86,11 +86,12 @@ const getters = {
         })
         return tasks
     },
-    tasksFiltered: (state) => {
+    tasksFiltered: (state, getters) => {
+        let tasksSorted = getters.tasksSorted
         let tasksFiltered = {}
         if(state.search) {
-            Object.keys(state.tasks).forEach(function(key) {
-                let task = state.tasks[key]
+            Object.keys(tasksSorted).forEach(function(key) {
+                let task = tasksSorted[key]
                 let taskNameToLowerCase = task.name.toLowerCase()
                 let searchToLowerCase = state.search.toLowerCase()
                 if(taskNameToLowerCase.includes(searchToLowerCase)) {
@@ -99,7 +100,29 @@ const getters = {
             })
             return tasksFiltered
         }
-        return state.tasks
+        return tasksSorted
+    },
+    tasksSorted: (state) => {
+        let tasksSorted = {}
+        let keysOrdered = Object.keys(state.tasks)
+        let tasks = state.tasks
+        
+        keysOrdered.sort((a, b) => {
+            let taskAProp = tasks[a].name.toLowerCase()
+            let taskBProp = tasks[b].name.toLowerCase()
+
+            if(taskAProp > taskBProp) return 1
+
+            else if(taskAProp < taskBProp) return -1
+
+            else return 0
+        })
+
+        keysOrdered.forEach((key) => {
+            tasksSorted[key] = state.tasks[key]
+        })
+
+        return tasksSorted
     }
 }
 

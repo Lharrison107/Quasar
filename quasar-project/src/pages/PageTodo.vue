@@ -58,7 +58,7 @@ import { mapGetters, mapState } from 'vuex'
       })
     },
     computed: {
-     ...mapGetters('tasks', ['tasksTodo', 'tasksCompleted']),
+     ...mapGetters('tasks', ['tasksTodo', 'tasksCompleted', 'tasksSorted']),
      ...mapState('tasks', ['search'])
     },
     components: {
