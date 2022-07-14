@@ -1,15 +1,17 @@
 <template>
-    <q-banner class="bg-grey-3">
-
-        <template v-slot:avatar>
-            <q-icon name="check" color="teal-13" />
-        </template>
-            No Tasks To Do Today
-        <template v-slot:action>
-            <q-btn flat color="primary" label="Add Task" />
-        </template>
+      <q-banner class="bg-grey-3">
+      <template v-slot:avatar>
+        <q-icon name="check" color="blue" />
+      </template>
+      <span class="text-h6">No Tasks To Do Today</span>
+      <template v-slot:action>
+       <q-btn
+       @click="$root.$emit('showAddTask')"
+          flat
+          color="blue"
+          label="Add Task" />
+      </template>
     </q-banner>
-
 </template>
 
 <script>

@@ -1,6 +1,8 @@
 <template>
   <q-page class="q-pa-md">
-    <noTasks v-if="!Object.keys(tasksTodo).length">
+    <noTasks 
+      v-if="!Object.keys(tasksTodo).length"
+    >
     </noTasks>
 
     <tasksTodo 
@@ -38,6 +40,11 @@ import { mapGetters } from 'vuex'
       return {
         showAddTask: false
       }
+    },
+    mounted() {
+      this.$root.$on('showAddTask', () => {
+        this.showAddTask = true
+      })
     },
     computed: {
      ...mapGetters('tasks', ['tasksTodo', 'tasksCompleted'])
