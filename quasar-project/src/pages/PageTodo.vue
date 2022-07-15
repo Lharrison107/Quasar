@@ -1,7 +1,8 @@
 <template>
   <q-page class="q-pa-md">
-    <div class="row q-mb-lg">
+    <div class="row q-mb-lg ">
       <search class="col"/>
+      <sort />
     </div>
 
     <p 
@@ -68,6 +69,7 @@ import { mapGetters, mapState } from 'vuex'
       'tasksCompleted' : require('components/Tasks/tasksCompleted.vue').default,
       'noTasks' : require('components/Tasks/NoTasks.vue').default,
       'search' : require('components/Tasks/Tools/Search.vue').default,
+      'sort' : require('components/Tasks/Tools/Sort.vue').default,
     }
   }
 </script>
