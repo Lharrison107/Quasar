@@ -3,6 +3,8 @@
         filled
         class="col q-pl-sm"
         v-model="model"
+        emit-value
+        map-options
         :options="options"
         label="Sort By:"
         stack-label 
@@ -18,8 +20,20 @@
         model: ref(null),
 
         options: [
-            'Due Date', 'Due Time', 'Name'
+            {
+                label: 'Date',
+                value: 'dueDate'
+            },
+            {
+                label: 'Name',
+                value: 'name'
+            },
+                {
+                label: 'Time',
+                value: 'dueTime'
+            }
         ],
+
         }
     }
     }
