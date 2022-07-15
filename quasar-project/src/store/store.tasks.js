@@ -8,21 +8,21 @@ const state = {
             name: 'Go to store',
             completed: false,
             dueDate: '7/10/25',
-            dueTime: '14:00'
+            dueTime: '14:01'
        },
        'ID2': {
             id: 2,
             name: 'Get bananas',
             completed: false,
             dueDate: '7/10/23',
-            dueTime: '14:00'
+            dueTime: '14:20'
         },
         'ID3': {
             id: 3,
             name: 'Get apples',
             completed: false,
             dueDate: '7/10/29',
-            dueTime: '14:00'
+            dueTime: '14:45'
         }, 
     },
     search: '',
@@ -41,6 +41,9 @@ const mutations = {
     },
     setSearch(state, value) {
         state.search = value
+    },
+    setSort(state, value) {
+        state.sort = value
     }
 }
 
@@ -61,6 +64,9 @@ const actions = {
     },
     setSearch({ commit }, value) {
         commit('setSearch', value)
+    },
+    setSort({ commit }, value) {
+        commit('setSort', value)
     }
 }
 

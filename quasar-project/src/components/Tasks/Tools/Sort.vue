@@ -1,41 +1,53 @@
 <template>
     <q-select
+        v-model="sortBy"
+        :options="options"
+        label="Sort by"
+        class="col q-ml-sm"
         filled
-        class="col q-pl-sm"
-        v-model="model"
+        stack-label
         emit-value
         map-options
-        :options="options"
-        label="Sort By:"
-        stack-label 
     />
 </template>
 
 <script>
-    import { ref } from 'vue'
+    import { mapState, mapActions} from 'vuex';
 
     export default {
-    setup () {
-        return {
-        model: ref(null),
-
-        options: [
-            {
-                label: 'Date',
-                value: 'dueDate'
-            },
-            {
-                label: 'Name',
-                value: 'name'
-            },
-                {
-                label: 'Time',
-                value: 'dueTime'
+        data () {
+            return {
+                options: [
+                    {
+                        value: 'dueDate',
+                        label: 'Date'
+                        
+                    },
+                    {
+                        value: 'dueTime',
+                        label: 'Time'
+                    },
+                    {
+                        value: 'name',
+                        label: 'Name'
+                    }
+                ],
             }
-        ],
-
+        },
+        computed: {
+            ...mapState('tasks', ['sort']),
+            sortBy: {
+                get() {
+                    return this.sort
+                },
+                set(value) {
+                    this.setSort(value)
+                }
+            }
+        },
+        methods: {
+            ...mapActions('tasks', ['setSort']),
         }
-    }
     }
 </script>
 
