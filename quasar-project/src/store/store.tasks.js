@@ -25,7 +25,8 @@ const state = {
             dueTime: '14:00'
         }, 
     },
-    search: ''
+    search: '',
+    sort: 'name'
 }
 
 const mutations = {
@@ -108,8 +109,8 @@ const getters = {
         let tasks = state.tasks
         
         keysOrdered.sort((a, b) => {
-            let taskAProp = tasks[a].name.toLowerCase()
-            let taskBProp = tasks[b].name.toLowerCase()
+            let taskAProp = tasks[a][state.sort].toLowerCase()
+            let taskBProp = tasks[b][state.sort].toLowerCase()
 
             if(taskAProp > taskBProp) return 1
 
