@@ -2,6 +2,7 @@
     <q-item
         @click="updateTask({ id: id, updates: { completed: !task.completed }})"
         :class="!task.completed ? 'bg-pink-1' : 'bg-teal-1'"
+        v-touch-hold:1000.mouse="showEditTaskModal"
         clickable
         v-ripple
     >
@@ -52,7 +53,7 @@
         <q-item-section side>
             <div class="row">
                 <q-btn 
-                    @click.stop="showEditTask = true"
+                    @click.stop="showEditTaskModal"
                     flat 
                     round 
                     dense
@@ -102,6 +103,9 @@ export default {
             }).onOk(() => {
                 this.deleteTask(id);
             });
+        },
+        showEditTaskModal() {
+            this.showEditTask = true
         }
     },
     components: { EditTask }
