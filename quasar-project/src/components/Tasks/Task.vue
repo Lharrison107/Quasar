@@ -72,7 +72,7 @@
         </q-item-section>
 
         <q-dialog v-model="showEditTask">
-            <edit-task 
+            <EditTask
                 @close="showEditTask = false"
                 :task="task"
                 :id="id"
@@ -83,8 +83,8 @@
 
 <script>
 import { mapState, mapActions} from 'vuex'
-import EditTask from './Modals/EditTask.vue'
 import { date } from 'quasar'
+import EditTask from 'components/Tasks/Modals/EditTask.vue';
 
 export default {
     props: ["task", "id"],
@@ -93,6 +93,7 @@ export default {
             "showEditTask": false
         };
     },
+    components: { EditTask },
     methods: {
         ...mapActions("tasks", ["updateTask", "deleteTask"]),
         promptToDelete(id) {
@@ -108,9 +109,6 @@ export default {
         showEditTaskModal() {
             this.showEditTask = true
         }
-    },
-    components: { 
-        'edit-task': require('components/Tasks/Modals/EditTask.vue').default
     },
     filters: {
         niceDate(value) {
