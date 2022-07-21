@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated class="glossy">
+    <q-header elevated>
       <q-toolbar>
         <q-toolbar-title class="absolute-center">
           Awesome Todo
@@ -34,7 +34,6 @@
       <q-list dark>
         <q-item-label
           header
-          class="text-grey-4"
         >
           Navigation
         </q-item-label>
@@ -60,7 +59,7 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container >
       <router-view />
     </q-page-container>
   </q-layout>

@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md absolute full-width full-height column">
+  <div class="q-pa-md full-width full-height absolute column">
     <div class="row q-mb-lg ">
       <search class="col"/>
       <sort />
@@ -83,6 +83,5 @@ import { mapGetters, mapState } from 'vuex'
   .q-scroll-area-tasks {
     display: flex;
     flex-grow : 1;
-
   }
 </style>
