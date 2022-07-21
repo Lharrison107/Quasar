@@ -15,13 +15,22 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+
   export default {
     computed: {
       ...mapGetters('settings', ['settings']),
-      show12HourTimeFormat() {
-        return this.settings.show12HourTimeFormat
+      show12HourTimeFormat: {
+        get() {
+          return this.settings.show12HourTimeFormat
+        },
+        set(value) {
+          this.setShow12HourTimeFormat(value)
+        }
       }
+    },
+    methods: {
+      ...mapActions('settings', ['setShow12HourTimeFormat'])
     }
   }
 </script>
