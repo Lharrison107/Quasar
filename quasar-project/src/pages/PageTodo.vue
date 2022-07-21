@@ -12,20 +12,24 @@
       <i>No search results</i>
     </p>
 
-    <noTasks 
-      v-if="!Object.keys(tasksTodo).length && !search"
-    >
-    </noTasks>
+    <div class="relative-position">
 
-    <tasksTodo 
-      :tasksTodo="tasksTodo"
-      v-if="Object.keys(tasksTodo).length"
-    />
+      <noTasks 
+        v-if="!Object.keys(tasksTodo).length && !search"
+      >
+      </noTasks>
 
-    <tasksCompleted 
-      :tasksCompleted="tasksCompleted"
-      v-if="Object.keys(tasksCompleted).length"
-    />
+      <tasksTodo 
+        :tasksTodo="tasksTodo"
+        v-if="Object.keys(tasksTodo).length"
+      />
+
+      <tasksCompleted 
+        :tasksCompleted="tasksCompleted"
+        v-if="Object.keys(tasksCompleted).length"
+      />
+
+    </div>
 
     <div class="absolute-bottom text-center q-mb-lg">
       <q-btn
