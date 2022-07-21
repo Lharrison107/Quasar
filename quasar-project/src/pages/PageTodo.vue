@@ -15,7 +15,7 @@
     <q-scroll-area class="q-scroll-area-tasks">
 
       <noTasks 
-        v-if="!Object.keys(tasksTodo).length && !search"
+        v-if="!Object.keys(tasksTodo).length && !search && !settings.showTasksInOneList"
       >
       </noTasks>
 
@@ -64,8 +64,9 @@ import { mapGetters, mapState } from 'vuex'
       })
     },
     computed: {
-     ...mapGetters('tasks', ['tasksTodo', 'tasksCompleted', 'tasksSorted']),
-     ...mapState('tasks', ['search'])
+      ...mapGetters('settings', ['settings']),
+      ...mapGetters('tasks', ['tasksTodo', 'tasksCompleted', 'tasksSorted']),
+      ...mapState('tasks', ['search'])
     },
     components: {
       'task' : require('components/Tasks/Task.vue').default,
