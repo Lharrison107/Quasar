@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-md">
+  <div class="q-pa-md absolute full-width full-height column">
     <div class="row q-mb-lg ">
       <search class="col"/>
       <sort />
@@ -12,7 +12,7 @@
       <i>No search results</i>
     </p>
 
-    <div class="relative-position">
+    <q-scroll-area class="q-scroll-area-tasks">
 
       <noTasks 
         v-if="!Object.keys(tasksTodo).length && !search"
@@ -27,11 +27,12 @@
       <tasksCompleted 
         :tasksCompleted="tasksCompleted"
         v-if="Object.keys(tasksCompleted).length"
+        class="q-mb-xl"
       />
 
-    </div>
+    </q-scroll-area>
 
-    <div class="absolute-bottom text-center q-mb-lg">
+    <div class="absolute-bottom text-center q-mb-lg no-pointer-events">
       <q-btn
       @click="showAddTask = true"
         round
@@ -45,7 +46,7 @@
       <addTask @close="showAddTask = false"/>
     </q-dialog>
 
-  </q-page>
+  </div>
 </template>
 
 <script>
@@ -79,5 +80,9 @@ import { mapGetters, mapState } from 'vuex'
 </script>
 
 <style>
-  
+  .q-scroll-area-tasks {
+    display: flex;
+    flex-grow : 1;
+
+  }
 </style>

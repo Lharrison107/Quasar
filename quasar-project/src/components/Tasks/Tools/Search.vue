@@ -5,6 +5,7 @@
           @keyup.esc="searchField = ''"
           v-select-all
           label="Search"
+          class="col"
           outlined
         >
 
