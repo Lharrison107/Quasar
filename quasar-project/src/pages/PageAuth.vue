@@ -24,8 +24,7 @@
                 </q-tab-panel>
 
                 <q-tab-panel name="register">
-                    <div class="text-h6">Create A New Account</div>
-                    register here
+                    <Register />         
                 </q-tab-panel>
             </q-tab-panels>
       </q-card>
@@ -33,11 +32,13 @@
 </template>
 
 <script>
+import Register from 'src/components/Auth/register.vue'
 import { ref } from 'vue'
+
     export default {
         setup () {
             return {
-            tab: ref('mails')
+            tab: ref('register')
             }
         },
         data() {
@@ -47,7 +48,8 @@ import { ref } from 'vue'
         methods: {
         },
         components: {
-        }
+    Register
+}
     }
 </script>
 
