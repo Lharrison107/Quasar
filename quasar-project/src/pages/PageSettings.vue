@@ -100,7 +100,7 @@ import { mapGetters, mapActions } from 'vuex'
     methods: {
       ...mapActions('settings', ['setShow12HourTimeFormat', 'setShowTasksInOneList']),
       visitOurWebsite() {
-        openURL('https://www.youtube.com/watch?v=UclCCFNG9q4&list=RDMMZkqyIoYAXV8&index=14')
+        openURL('https://www.youtube.com/watch?v=yaU8yO968F4&list=RDMMZkqyIoYAXV8&index=8')
       },
       emailUs() {
         window.location.href = 'mailto:Lharrison@diesellaptops.com?subject=Awesome Todo Feedback'
