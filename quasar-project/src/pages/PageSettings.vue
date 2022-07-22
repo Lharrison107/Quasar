@@ -41,12 +41,40 @@
          <q-icon name="chevron_right" color="pink" />
         </q-item-section>
       </q-item>
+
+      <q-item
+        tag="label"
+        v-ripple
+        @click="emailUs"
+      >
+        <q-item-section>
+          <q-item-label>Email us</q-item-label>
+        </q-item-section>
+        <q-item-section side >
+         <q-icon name="chevron_right" color="pink" />
+        </q-item-section>
+      </q-item>
+
+      <q-item
+        tag="label"
+        v-ripple
+        @click="visitOurWebsite"
+      >
+        <q-item-section>
+          <q-item-label>Visit our website</q-item-label>
+        </q-item-section>
+        <q-item-section side >
+         <q-icon name="chevron_right" color="pink" />
+        </q-item-section>
+      </q-item>
+
     </q-list>
 
   </q-page>
 </template>
 
 <script>
+import { openURL } from 'quasar'
 import { mapGetters, mapActions } from 'vuex'
 
   export default {
@@ -70,7 +98,13 @@ import { mapGetters, mapActions } from 'vuex'
       }
     },
     methods: {
-      ...mapActions('settings', ['setShow12HourTimeFormat', 'setShowTasksInOneList'])
+      ...mapActions('settings', ['setShow12HourTimeFormat', 'setShowTasksInOneList']),
+      visitOurWebsite() {
+        openURL('https://www.youtube.com/watch?v=UclCCFNG9q4&list=RDMMZkqyIoYAXV8&index=14')
+      },
+      emailUs() {
+        window.location.href = 'mailto:Lharrison@diesellaptops.com?subject=Awesome Todo Feedback'
+      }
     }
   }
 </script>
