@@ -1,7 +1,12 @@
 <template>
   <q-page padding>
-    <q-separator spaced />
-      <q-item-label header>Settings</q-item-label>
+
+    <q-list
+      class="q-mb-md"
+      bordered
+      paddin
+    >
+      <q-item-label header class="text-pink">Settings</q-item-label>
 
       <q-item tag="label" v-ripple>
         <q-item-section>
@@ -20,6 +25,24 @@
           <q-toggle color="pink" v-model="showTasksInOneList" />
         </q-item-section>
       </q-item>
+    </q-list>
+
+    <q-list bordered padding class="q-mb-md">
+      <q-item-label header class="text-pink">More</q-item-label>
+        <q-item
+          tag="label"
+          v-ripple
+          to="/settings/help"
+        >
+        <q-item-section>
+          <q-item-label>Help</q-item-label>
+        </q-item-section>
+        <q-item-section side >
+         <q-icon name="chevron_right" color="pink" />
+        </q-item-section>
+      </q-item>
+    </q-list>
+
   </q-page>
 </template>
 
