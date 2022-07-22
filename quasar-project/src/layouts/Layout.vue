@@ -2,6 +2,14 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar>
+        <q-btn 
+          flat
+          color="info"
+          to="/auth"
+          icon-right="login"
+          label="Login" 
+          class="absolute-right"
+        />
         <q-toolbar-title class="absolute-center">
           Awesome Todo
         </q-toolbar-title>
