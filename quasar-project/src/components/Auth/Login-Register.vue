@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
     export default {
         props: ['button', 'tab'],
         data() {
@@ -60,6 +62,7 @@
             }
         },
         methods: {
+            ...mapActions('auth', ['registerUser']),
             submitForm() {
 
                 this.$refs.email.validate()
@@ -68,7 +71,7 @@
                     if(this.tab == 'login') {
                         console.log('Login')
                     } else {
-                        console.log('Register')
+                        this.registerUser(this.formData)
                     }
                 } else {
                     console.log('errors detected')
