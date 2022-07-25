@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form @submit.prevent="submitForm">
         <div class="row q-mb-md">
             <q-banner class="bg-cyan-1 text-center col">
                 <template v-slot:avatar>
@@ -16,6 +16,7 @@
               v-model="formData.email"
               label="Email"
               stack-label
+              :rules="[ val => isValidEmailAddress(val) || 'Please enter valid email address']"
             />
         </div>
 
@@ -35,6 +36,7 @@
             <q-btn
                 color="info"
                 label="Create"
+                type="submit"
             />
         </div>
 
@@ -53,6 +55,13 @@
             }
         },
         methods: {
+            submitForm() {
+                console.log('submit form')
+            },
+            isValidEmailAddress(email) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            }
         },
         components: {
         }
