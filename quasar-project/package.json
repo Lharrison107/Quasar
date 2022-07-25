@@ -12,6 +12,7 @@
     "@quasar/extras": "^1.0.0",
     "console": "^0.7.2",
     "core-js": "^3.6.5",
+    "firebase": "^9.9.1",
     "quasar": "^1.0.0"
   },
   "devDependencies": {
