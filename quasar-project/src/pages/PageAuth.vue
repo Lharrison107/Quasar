@@ -34,7 +34,7 @@
                         button="Create"
                     >
                         <b class="text-info">
-                            ~ Create An Account ~
+                            ~ Register for An Account ~
                         </b>
                     </LoginRegister>        
                 </q-tab-panel>
