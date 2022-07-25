@@ -15,8 +15,9 @@
               outlined
               v-model="formData.email"
               label="Email"
+              ref="email"
+              :rules="[ val => isValidEmailAddress(val) || 'Please use valid email address']"
               stack-label
-              :rules="[ val => isValidEmailAddress(val) || 'Please enter valid email address']"
             />
         </div>
 
@@ -28,6 +29,9 @@
                 type="password"
                 label="Password"
                 stack-label
+                lazy-rules
+                ref="password"
+                :rules="[ val => val.length >= 6 || 'Please use minimum of 6 characters', val => val.length < 25 || 'Please use maximum of 25 characters']"
             />
         </div>
 
@@ -56,8 +60,15 @@
         },
         methods: {
             submitForm() {
-                console.log('submit form')
+                this.$refs.email.validate()
+                this.$refs.password.validate()
+                if(!this.$refs.email.hasError && !this.$refs.password.hasError){
+                    console.log('register user')
+                } else {
+                    console.log('errors detected')
+                }
             },
+
             isValidEmailAddress(email) {
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(email);
