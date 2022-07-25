@@ -5,7 +5,7 @@
                 <template v-slot:avatar>
                     <q-icon name="how_to_reg" color="info" />
                 </template>
-                <b class="text-info">Create An Account</b>
+                <slot></slot>
             </q-banner>
         </div>
 
@@ -39,7 +39,7 @@
             <q-space />
             <q-btn
                 color="info"
-                label="Create"
+                :label="button"
                 type="submit"
             />
         </div>
@@ -50,6 +50,7 @@
 
 <script>
     export default {
+        props: ['button', 'tab'],
         data() {
             return {
                 formData: {
@@ -60,10 +61,15 @@
         },
         methods: {
             submitForm() {
+
                 this.$refs.email.validate()
                 this.$refs.password.validate()
                 if(!this.$refs.email.hasError && !this.$refs.password.hasError){
-                    console.log('register user')
+                    if(this.tab == 'login') {
+                        console.log('Login')
+                    } else {
+                        console.log('Register')
+                    }
                 } else {
                     console.log('errors detected')
                 }

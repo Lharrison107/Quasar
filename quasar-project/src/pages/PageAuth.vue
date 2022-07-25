@@ -18,13 +18,25 @@
 
             <q-tab-panels v-model="tab" animated>
                 <q-tab-panel name="login">
-                    <div class="text-h6">Login</div>
-                    User Name:
-                    Password:
+                    <LoginRegister
+                        :tab="tab"
+                        button="Login"
+                    >
+                        <b class="text-info">
+                            ~ Login ~
+                        </b>
+                    </LoginRegister> 
                 </q-tab-panel>
 
                 <q-tab-panel name="register">
-                    <Register />         
+                    <LoginRegister
+                        :tab="tab"
+                        button="Create"
+                    >
+                        <b class="text-info">
+                            ~ Create An Account ~
+                        </b>
+                    </LoginRegister>        
                 </q-tab-panel>
             </q-tab-panels>
       </q-card>
@@ -32,13 +44,14 @@
 </template>
 
 <script>
-import Register from 'src/components/Auth/register.vue'
+
 import { ref } from 'vue'
+import LoginRegister from 'src/components/Auth/Login-Register.vue'
 
     export default {
         setup () {
             return {
-            tab: ref('register')
+            tab: ref('login')
             }
         },
         data() {
@@ -48,8 +61,8 @@ import { ref } from 'vue'
         methods: {
         },
         components: {
-    Register
-}
+            LoginRegister
+        }
     }
 </script>
 
