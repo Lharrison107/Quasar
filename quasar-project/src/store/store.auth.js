@@ -31,6 +31,9 @@ const actions = {
                 console.log('error message: ', error.message)
             })
     },
+    logoutUser(){
+        firebaseAuth.signOut()
+    },
     handleAuthStateChange({commit}) {
         firebaseAuth.onIdTokenChanged(function(user) {
             if(user) {

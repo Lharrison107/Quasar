@@ -7,7 +7,7 @@
           v-if="!loggedIn"
           color="info"
           to="/auth"
-          icon-right="login"
+          icon-right="account_circle"
           label="Login" 
           class="absolute-right"
         />
@@ -15,6 +15,7 @@
         <q-btn 
           flat
           v-else
+          @click="logoutUser"
           color="info"
           icon-right="logout"
           label="Logout" 
@@ -85,8 +86,7 @@
 </template>
 
 <script>
-import { computed } from 'vue'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
   export default {
     name: 'Layout',
@@ -109,6 +109,9 @@ import { mapState } from 'vuex'
     }, 
     computed: {
       ...mapState('auth', ['loggedIn'])
+    },
+    methods: {
+      ...mapActions('auth', ['logoutUser'])
     }
   }
  
