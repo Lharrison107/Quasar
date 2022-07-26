@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { LocalStorage } from "quasar";
+import { LocalStorage, Loading } from "quasar";
 import { firebaseAuth } from '../boot/firebase.js';
+import { showErrorMessage } from "src/functions/function-show-error-message.js";
 
 const state = {
     loggedIn: false
@@ -15,21 +16,23 @@ const mutations = {
 
 const actions = {
     registerUser({}, payload){
+        Loading.show({message: 'Hold your horses... Important things are happening'})
         createUserWithEmailAndPassword(firebaseAuth, payload.email, payload.password)
             .then(response => {
                 console.log('response: ', response)
             })
             .catch(error => {
-                console.log('error message: ', error.message)
+                showErrorMessage(error.message)
             })
     },
     loginUser({}, payload) {
+        Loading.show({message: 'Hold your horses... Important things are happening'})
         signInWithEmailAndPassword(firebaseAuth, payload.email, payload.password)
             .then(response => {
                 console.log('response: ', response)
             })
             .catch(error => {
-                console.log('error message: ', error.message)
+                showErrorMessage(error.message)
             })
     },
     logoutUser(){
@@ -37,6 +40,7 @@ const actions = {
     },
     handleAuthStateChange({commit}) {
         firebaseAuth.onIdTokenChanged(user => {
+            Loading.hide()
             if(user) {
                 commit('setLoggedIn', true)
                 LocalStorage.set('loggedIn', true)
