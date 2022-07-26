@@ -2,7 +2,7 @@ import Vue from 'vue';
 import { uid } from 'quasar';
 import { firebaseDB, firebaseAuth } from 'src/boot/firebase';
 import { currentUser } from "firebase/auth";
-import { ref, onChildAdded, onChildChanged } from "firebase/database"
+import { ref, onChildAdded, onChildChanged, onChildRemoved } from "firebase/database"
 
 const state = {
     tasks: {
@@ -93,6 +93,11 @@ const actions = {
                     updates: task
             }
             commit('updateTask', payload)
+        })
+
+        onChildRemoved(userTasks, snapshot => {
+            const taskID = snapshot.key
+            commit('deleteTask', taskID)
         })
             
     }
