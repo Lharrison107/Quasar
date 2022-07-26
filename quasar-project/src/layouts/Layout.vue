@@ -4,12 +4,23 @@
       <q-toolbar>
         <q-btn 
           flat
+          v-if="!loggedIn"
           color="info"
           to="/auth"
           icon-right="login"
           label="Login" 
           class="absolute-right"
         />
+
+        <q-btn 
+          flat
+          v-else
+          color="info"
+          icon-right="logout"
+          label="Logout" 
+          class="absolute-right"
+        />
+
         <q-toolbar-title class="absolute-center">
           Awesome Todo
         </q-toolbar-title>
@@ -74,6 +85,9 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+import { mapState } from 'vuex'
+
   export default {
     name: 'Layout',
     data () {
@@ -92,8 +106,12 @@
           }
         ]
       }
+    }, 
+    computed: {
+      ...mapState('auth', ['loggedIn'])
     }
   }
+ 
 </script>
 
 <style lang="scss">
