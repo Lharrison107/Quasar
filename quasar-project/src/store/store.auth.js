@@ -1,4 +1,5 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { LocalStorage } from "quasar";
 import { firebaseAuth } from '../boot/firebase.js';
 
 const state = {
@@ -38,9 +39,11 @@ const actions = {
         firebaseAuth.onIdTokenChanged(user => {
             if(user) {
                 commit('setLoggedIn', true)
+                LocalStorage.set('loggedIn', true)
                 this.$router.push('/').catch(err => {})
             } else {
                 commit('setLoggedIn', false)
+                LocalStorage.set('loggedIn', false)
                 this.$router.replace('/auth').catch(err => {})
             }
         })
