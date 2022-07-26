@@ -32,7 +32,8 @@
 
     </q-scroll-area>
 
-    <div class="absolute-bottom text-center q-mb-lg no-pointer-events">
+    <!-- i cut out no-pointer-events from this class to get plus sign to work -->
+    <div class="absolute-bottom text-center q-mb-lg">
       <q-btn
       @click="showAddTask = true"
         round
