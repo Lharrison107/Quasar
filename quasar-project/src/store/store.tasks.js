@@ -2,7 +2,7 @@ import Vue from 'vue';
 import { uid } from 'quasar';
 import { firebaseDB, firebaseAuth } from 'src/boot/firebase';
 import { currentUser } from "firebase/auth";
-import { ref, onChildAdded, onChildChanged, onChildRemoved, set, update } from "firebase/database"
+import { ref, onChildAdded, onChildChanged, onChildRemoved, set, update, remove } from "firebase/database"
 
 const state = {
     tasks: {
@@ -54,8 +54,8 @@ const actions = {
     updateTask({ dispatch }, payload) {
         dispatch('fbUpdateTask', payload)
     },
-    deleteTask({ commit }, id) {
-        commit('deleteTask', id)
+    deleteTask({ dispatch }, id) {
+        dispatch('fbDeleteTask', id)
     },
     addTask({ dispatch }, task) {
         let taskId = uid()
@@ -112,6 +112,11 @@ const actions = {
         const taskRef = ref(firebaseDB, 'tasks/' + user + '/' + payload.id)
         console.log(payload)
         update(taskRef, payload.updates)
+    },
+    fbDeleteTask({}, id) {
+        const user = firebaseAuth.currentUser.uid
+        const taskRef = ref(firebaseDB, 'tasks/' + user + '/' + id)
+        remove(taskRef, id)
     }
 }
 
