@@ -3,39 +3,27 @@ import { uid } from 'quasar';
 
 const state = {
     tasks: {
-       'ID1': {
-            id: 1,
-            name: 'Call transmission guy',
-            completed: false,
-            dueDate: '2022/08/12',
-            dueTime: '14:01'
-       },
-       'ID2': {
-            id: 2,
-            name: 'Do Dishes',
-            completed: false,
-            dueDate: '2022/08/13',
-            dueTime: '14:20'
-        },
-        'ID3': {
-            id: 3,
-            name: 'Make Dinner',
-            completed: false,
-            dueDate: '2022/08/12',
-            dueTime: '14:45'
-        }, 
-        'ID4': {
-			name: 'Go to shop',
-			completed: false,
-			dueDate: '2022/08/17',
-			dueTime: '18:30'
-		},
-		'ID5': {
-			name: 'Get bananas',
-			completed: false,
-			dueDate: '2022/08/17',
-			dueTime: '14:00'
-		}
+    //    'ID1': {
+    //         id: 1,
+    //         name: 'Call transmission guy',
+    //         completed: false,
+    //         dueDate: '2022/08/12',
+    //         dueTime: '14:01'
+    //    },
+    //    'ID2': {
+    //         id: 2,
+    //         name: 'Do Dishes',
+    //         completed: false,
+    //         dueDate: '2022/08/13',
+    //         dueTime: '14:20'
+    //     },
+    //     'ID3': {
+    //         id: 3,
+    //         name: 'Make Dinner',
+    //         completed: false,
+    //         dueDate: '2022/08/12',
+    //         dueTime: '14:45'
+    //     },
     },
     search: '',
     sort: 'name'
@@ -79,6 +67,9 @@ const actions = {
     },
     setSort({ commit }, value) {
         commit('setSort', value)
+    },
+    firebaseReadData({ commit }) {
+        console.log('start reading data from database')
     }
 }
 
