@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import { uid } from 'quasar';
+import { firebaseDB } from 'src/boot/firebase';
 
 const state = {
     tasks: {
