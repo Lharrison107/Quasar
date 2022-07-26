@@ -35,11 +35,13 @@ const actions = {
         firebaseAuth.signOut()
     },
     handleAuthStateChange({commit}) {
-        firebaseAuth.onIdTokenChanged(function(user) {
+        firebaseAuth.onIdTokenChanged(user => {
             if(user) {
                 commit('setLoggedIn', true)
+                this.$router.push('/')
             } else {
                 commit('setLoggedIn', false)
+                this.$router.replace('/auth')
             }
         })
     }
