@@ -81,13 +81,17 @@ const actions = {
     },
     firebaseReadData({ commit }) {
         let user = firebaseAuth.currentUser.uid
-        
         const userTasks = ref(firebaseDB, 'tasks/' + user)
 
         //check for data
         get( userTasks, 'value').then( value => {
             console.log(value)
             commit('setTasksDownloaded', true)
+        }).catch(error => {
+            if(error) { 
+                console.log(error)
+                showErrorMessage(error.message)
+            }
         })      
   
         onChildAdded( userTasks, snapshot => {
