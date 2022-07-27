@@ -3,6 +3,7 @@ import { uid } from 'quasar';
 import { firebaseDB, firebaseAuth } from 'src/boot/firebase';
 import { currentUser } from "firebase/auth";
 import { ref, onChildAdded, onChildChanged, onChildRemoved, set, update, remove, get } from "firebase/database"
+import { showErrorMessage } from 'src/functions/function-show-error-message';
 
 const state = {
     tasks: {
@@ -79,7 +80,8 @@ const actions = {
         commit('setSort', value)
     },
     firebaseReadData({ commit }) {
-        const user = firebaseAuth.currentUser.uid
+        let user = firebaseAuth.currentUser.uid
+        
         const userTasks = ref(firebaseDB, 'tasks/' + user)
 
         //check for data
@@ -113,21 +115,36 @@ const actions = {
             
     },
     fbAddTask({}, payload) {
-        const user = firebaseAuth.currentUser.uid
+        let user = firebaseAuth.currentUser.uid
         const taskRef = ref(firebaseDB, 'tasks/' + user + '/' + payload.id)
 
-        set(taskRef, payload.task)
+        set(taskRef, payload.task).catch(error => {
+            if(error) { 
+                console.log(error)
+                showErrorMessage(error.message)
+            }
+        })
     },
     fbUpdateTask({}, payload) {
-        const user = firebaseAuth.currentUser.uid
+        let user = firebaseAuth.currentUser.uid
         const taskRef = ref(firebaseDB, 'tasks/' + user + '/' + payload.id)
         console.log(payload)
-        update(taskRef, payload.updates)
+        update(taskRef, payload.updates).catch(error => {
+            if(error) { 
+                console.log(error)
+                showErrorMessage(error.message)
+            }
+        })
     },
     fbDeleteTask({}, id) {
-        const user = firebaseAuth.currentUser.uid
+        let user = firebaseAuth.currentUser.uid
         const taskRef = ref(firebaseDB, 'tasks/' + user + '/' + id)
-        remove(taskRef, id)
+        remove(taskRef, id).catch(error => {
+            if(error) { 
+                console.log(error)
+                showErrorMessage(error.message)
+            }
+        })
     }
 }
 
