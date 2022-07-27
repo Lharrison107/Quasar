@@ -2,7 +2,7 @@ import Vue from 'vue';
 import { uid } from 'quasar';
 import { firebaseDB, firebaseAuth } from 'src/boot/firebase';
 import { currentUser } from "firebase/auth";
-import { ref, onChildAdded, onChildChanged, onChildRemoved, set, update, remove } from "firebase/database"
+import { ref, onChildAdded, onChildChanged, onChildRemoved, set, update, remove, get } from "firebase/database"
 
 const state = {
     tasks: {
@@ -78,9 +78,13 @@ const actions = {
     firebaseReadData({ commit }) {
         const user = firebaseAuth.currentUser.uid
         const userTasks = ref(firebaseDB, 'tasks/' + user)
+
+        //check for data
+        get( userTasks, 'value').then( value => {
+            commit('setTasksDownloaded', true)
+        })      
   
         onChildAdded( userTasks, snapshot => {
-            console.log(snapshot)
             const task = snapshot.val()
                 const payload = {
                     id: snapshot.key,
@@ -90,7 +94,6 @@ const actions = {
         })
 
         onChildChanged(userTasks, snapshot => {
-            console.log(snapshot)
             const task = snapshot.val()
                 const payload = {
                     id: snapshot.key,
