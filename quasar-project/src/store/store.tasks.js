@@ -43,6 +43,9 @@ const mutations = {
     addTask(state, payload) {
         Vue.set(state.tasks, payload.id, payload.task)
     },
+    clearTasks(state) {
+        state.tasks = {}
+    },
     setSearch(state, value) {
         state.search = value
     },
@@ -81,6 +84,7 @@ const actions = {
 
         //check for data
         get( userTasks, 'value').then( value => {
+            console.log(value)
             commit('setTasksDownloaded', true)
         })      
   

@@ -48,7 +48,7 @@
 
     <template v-else>
       <span class="absolute-center">
-        <q-spinner  size="5.5em"/>
+        <q-spinner  color="info" size="5.5em"/>
       </span>
     </template>
 
