@@ -5,7 +5,8 @@
         <q-btn 
           flat
           v-if="!loggedIn"
-          color="info"
+          color="white"
+          show-if-above
           to="/auth"
           icon-right="account_circle"
           label="Login" 
@@ -16,13 +17,14 @@
           flat
           v-else
           @click="logoutUser"
-          color="info"
+          show-if-above
+          color="white"
           icon-right="logout"
           label="Logout" 
           class="absolute-right"
         />
 
-        <q-toolbar-title class="absolute-center">
+        <q-toolbar-title class="absolute-center" >
           Awesome Todo
         </q-toolbar-title>
       </q-toolbar>
