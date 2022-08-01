@@ -29,6 +29,7 @@ const actions = {
         Loading.show({message: 'Hold your horses... Important things are happening'})
         signInWithEmailAndPassword(firebaseAuth, payload.email, payload.password)
             .then(response => {
+                window.location.reload()
                 console.log('response: ', response)
             })
             .catch(error => {

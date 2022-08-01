@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 	export default {
 		props: ['tab'],
 		data() {
@@ -56,21 +58,24 @@
 			}
 		},
 		methods: {
-			isValidEmailAddress(email) {
-				var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-				    return re.test(String(email).toLowerCase());
-			},
+			...mapActions('auth', ['registerUser', 'loginUser']),
+			
 			submitForm() {
 				this.$refs.email.validate()
 				this.$refs.password.validate()
 				if (!this.$refs.email.hasError && !this.$refs.password.hasError) {
 					if (this.tab == 'login') {
-						// login the user here
+						this.loginUser(this.formData)
 					}
 					else {
-						// register the user here
+						this.registerUser(this.formData)
 					}
 				}
+			},
+
+			isValidEmailAddress(email) {
+				var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+				    return re.test(String(email).toLowerCase());
 			}
 		},
 		filters: {

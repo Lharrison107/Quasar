@@ -36,14 +36,32 @@
             <q-item-label>Foods</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable to="/auth" exact>
+
+        <q-item
+          clickable
+          to="/auth"
+          exact
+          v-if="!loggedIn"
+        >
           <q-item-section avatar>
             <q-icon name="account_circle" />
           </q-item-section>
-          <q-item-section>
+          <q-item-section >
             <q-item-label>Login</q-item-label>
           </q-item-section>
         </q-item>
+
+        <q-item clickable v-else @click="logoutUser">
+          <q-item-section avatar>
+            <q-icon name="account_circle" />
+          </q-item-section>
+          <q-item-section >
+            <q-item-label>
+              Logout 
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+
       </q-list>
     </q-drawer>
 
@@ -55,6 +73,7 @@
 
 <script>
 import { openURL } from 'quasar'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'MyLayout',
@@ -64,7 +83,11 @@ export default {
     }
   },
   methods: {
+    ...mapActions('auth', ['logoutUser']),
     openURL
+  },
+  computed: {
+    ...mapState('auth', ['loggedIn', 'userEmail'])
   }
 }
 </script>
