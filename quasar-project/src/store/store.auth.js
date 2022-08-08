@@ -48,6 +48,8 @@ const actions = {
                 this.$router.push('/').catch(err => {})
                 dispatch('tasks/firebaseReadData', null, { root: true })
             } else {
+                commit('tasks/clearTasks', null, {root: true})
+                console.log('tasks cleared')
                 commit('setLoggedIn', false)
                 LocalStorage.set('loggedIn', false)
                 this.$router.replace('/auth').catch(err => {})

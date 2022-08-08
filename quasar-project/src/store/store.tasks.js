@@ -47,6 +47,9 @@ const mutations = {
     },
     setSort(state, value) {
         state.sort = value
+    },
+    clearTasks(state) {
+        state.tasks = {}
     }
 }
 
@@ -102,19 +105,21 @@ const actions = {
             
     },
     fbAddTask({}, payload) {
-        const user = firebaseAuth.currentUser.uid
+        let user = firebaseAuth.currentUser.uid
+        // user = 'ySsaFJm52TOCn41O6QTWSbISKl13'
         const taskRef = ref(firebaseDB, 'tasks/' + user + '/' + payload.id)
 
         set(taskRef, payload.task)
     },
     fbUpdateTask({}, payload) {
-        const user = firebaseAuth.currentUser.uid
+        let user = firebaseAuth.currentUser.uid
+        // user = 'ySsaFJm52TOCn41O6QTWSbISKl13'
         const taskRef = ref(firebaseDB, 'tasks/' + user + '/' + payload.id)
         console.log(payload)
         update(taskRef, payload.updates)
     },
     fbDeleteTask({}, id) {
-        const user = firebaseAuth.currentUser.uid
+        let user = firebaseAuth.currentUser.uid
         const taskRef = ref(firebaseDB, 'tasks/' + user + '/' + id)
         remove(taskRef, id)
     }
