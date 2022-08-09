@@ -2,23 +2,23 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn 
+        <q-btn
           flat
           v-if="!loggedIn"
           color="info"
           to="/auth"
           icon-right="account_circle"
-          label="Login" 
+          label="Login"
           class="absolute-right"
         />
 
-        <q-btn 
+        <q-btn
           flat
           v-else
           @click="logoutUser"
           color="info"
           icon-right="logout"
-          label="Logout" 
+          label="Logout"
           class="absolute-right"
         />
 
@@ -31,13 +31,13 @@
     <q-footer elevated>
       <q-toolbar>
         <q-tabs>
-          <q-route-tab 
+          <q-route-tab
             v-for="nav of navs"
             :key="nav.label"
-            :icon="nav.icon" 
+            :icon="nav.icon"
             :label="nav.label"
             :to="nav.to"
-            exact 
+            exact
           />
         </q-tabs>
       </q-toolbar>
@@ -45,6 +45,7 @@
 
     <q-drawer
       :width="250"
+      height="auto"
       v-model="leftDrawerOpen"
       :breakpoint="767"
       show-if-above
@@ -52,11 +53,7 @@
       content-class="bg-primary"
     >
       <q-list dark>
-        <q-item-label
-          header
-        >
-          Navigation
-        </q-item-label>
+        <q-item-label header> Navigation </q-item-label>
         <q-item
           class="text-grey-4"
           v-for="nav in navs"
@@ -65,9 +62,7 @@
           clickable
           exact
         >
-          <q-item-section
-            avatar
-          >
+          <q-item-section avatar>
             <q-icon :name="nav.icon" />
           </q-item-section>
 
@@ -76,57 +71,84 @@
           </q-item-section>
         </q-item>
 
+        <q-item
+          class="text-grey-4 absolute-bottom"
+          clickable
+          v-if="$q.platform.is.electron"
+          @click="quitApp"
+        >
+          <q-item-section avatar>
+            <q-icon name="power_settings_new" />
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label>Quit</q-item-label>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
-    <q-page-container >
+    <q-page-container>
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 
-  export default {
-    name: 'Layout',
-    data () {
-      return {
-        leftDrawerOpen: false,
-        navs:[
-          {
-            label: 'Todo',
-            icon: 'list',
-            to: '/'
-          },
-          {
-            label: 'Settings',
-            icon: 'settings',
-            to: '/settings'
+export default {
+  name: "Layout",
+  data() {
+    return {
+      leftDrawerOpen: false,
+      navs: [
+        {
+          label: "Todo",
+          icon: "list",
+          to: "/",
+        },
+        {
+          label: "Settings",
+          icon: "settings",
+          to: "/settings",
+        },
+      ],
+    };
+  },
+  computed: {
+    ...mapState("auth", ["loggedIn"]),
+  },
+  methods: {
+    quitApp() {
+      this.$q
+        .dialog({
+          title: "Confirm",
+          message: "Would you like to turn on the wifi?",
+          cancel: true,
+          persistent: true,
+        })
+        .onOk(() => {
+          if (this.$q.platform.is.electron) {
+            require("electron").ipcRenderer.send("quit-app");
           }
-        ]
-      }
-    }, 
-    computed: {
-      ...mapState('auth', ['loggedIn'])
+        });
     },
-    methods: {
-      ...mapActions('auth', ['logoutUser'])
-    }
-  }
- 
+    ...mapActions("auth", ["logoutUser"]),
+  },
+};
 </script>
 
 <style lang="scss">
-  @media screen and (min-width: 768px) {
-    .q-footer {
-      display: none;
-    }
+@media screen and (min-width: 768px) {
+  .q-footer {
+    display: none;
   }
+}
 
-  .q-drawer {
-    .q-router-link--exact-active {
-      color: white !important;
-    }
+.q-drawer {
+  .q-router-link--exact-active {
+    color: white !important;
   }
+}
 </style>

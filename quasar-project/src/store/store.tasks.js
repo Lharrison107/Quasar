@@ -87,11 +87,6 @@ const actions = {
                     task: task
             }
             commit('addTask', payload)
-        }, error => {
-            showErrorMessage(error.message);
-            setTimeout(() => {
-                this.$router.replace('/auth');
-            }, 3000);
         })
 
         onChildChanged(userTasks, snapshot => {
